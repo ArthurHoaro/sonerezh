@@ -113,6 +113,7 @@ class SonerezhShell extends AppShell {
             foreach ($to_import as $file) {
 
                 pcntl_signal_dispatch();
+                $this->overwrite('<info>[INFO]</info> Importing file: '. $file);
                 $song_manager = new SongManager($file);
                 $parse_result = $song_manager->parseMetadata();
 

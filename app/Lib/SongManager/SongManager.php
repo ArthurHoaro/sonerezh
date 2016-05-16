@@ -76,6 +76,9 @@ class SongManager {
         } elseif(!empty($file_infos['comments']['tracknumber'])){   // OGG Tag
             $metadata['track_number'] = end($file_infos['comments']['tracknumber']);
         }
+        if (!empty($metadata['track_number']) && !is_int($metadata['track_number'])) {
+            $metadata['track_number'] = null;
+        }
 
         // Song playtime
         if (!empty($file_infos['playtime_string'])) {
@@ -83,7 +86,7 @@ class SongManager {
         }
 
         // Song year
-        if (!empty($file_infos['comments']['year'])) {
+        if (!empty($file_infos['comments']['year']) && is_int($file_infos['comments']['year'])) {
             $metadata['year'] = end($file_infos['comments']['year']);
         }
 
